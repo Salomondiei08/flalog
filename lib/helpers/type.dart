@@ -1,0 +1,1 @@
+typedef GestureTapIndexCallback = void Function(int index);
