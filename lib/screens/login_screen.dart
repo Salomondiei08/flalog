@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flalog/screens/home_screen.dart';
 import 'package:flalog/screens/reset_password_screen.dart';
 import 'package:flalog/screens/sign_up_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:sign_in_button/sign_in_button.dart';
 
 import '../helpers/authservice.dart';
 import '../theme/app_theme.dart';
@@ -13,12 +16,14 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
+User? googleUser;
+
 class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
 
   late String email, password;
-
-  Color greenColor = const Color(0xFF00AF19);
+  Color greenColor = AppTheme.green;
+  bool _isSigningIn = false;
 
   //To check fields during submit
   checkFields() {
@@ -174,43 +179,38 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           const SizedBox(height: 20.0),
-          GestureDetector(
-            onTap: () {
-              //  AuthService().fbSignIn();
-            },
-            child: Container(
-              height: 50.0,
-              color: Colors.transparent,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                      color: Colors.black,
-                      style: BorderStyle.solid,
-                      width: 1.0),
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(25.0),
+          _isSigningIn
+              ? const CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                )
+              : SignInButton(
+                  Buttons.google,
+                  text: "Sign up with Google",
+                  onPressed: () async {
+                    setState(() {
+                      _isSigningIn = true;
+                    });
+
+                    googleUser =
+                        await AuthService.signInWithGoogle(context: context);
+
+                    if (googleUser != null) {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                      );
+                    }
+
+                    setState(() {
+                      _isSigningIn = false;
+                    });
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  padding: const EdgeInsets.all(5.0),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Center(
-                      child: Image(
-                        image: AssetImage('assets/facebook.png'),
-                      ),
-                      // size: 15.0),
-                    ),
-                    SizedBox(width: 10.0),
-                    Center(
-                      child: Text(
-                        'Login with Facebook',
-                        style: TextStyle(fontFamily: 'Trueno'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
           const SizedBox(height: 25.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

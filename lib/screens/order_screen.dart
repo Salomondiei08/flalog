@@ -16,7 +16,7 @@ class _OrderScreenState extends State<OrderScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/nothing_bougth.jpg'),
+          Image.asset('assets/images/nothing_bougth.png'),
           SizedBox(height: 5.h,),
           Text('Vous n\'avez encore rien acheté', style: Theme.of(context).textTheme.headline2,),
         ],

@@ -16,7 +16,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   late String email, password;
 
-  Color greenColor = const Color(0xFF00AF19);
+  Color greenColor = AppTheme.green;
+
 
   //To check fields during submit
   checkFields() {

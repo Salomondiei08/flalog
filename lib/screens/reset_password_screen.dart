@@ -15,7 +15,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   late String email;
 
-  Color greenColor = const Color(0xFF00AF19);
+  Color greenColor = AppTheme.green;
+
 
   //To check fields during submit
   checkFields() {

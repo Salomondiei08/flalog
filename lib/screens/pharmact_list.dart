@@ -1,6 +1,9 @@
+import 'package:flalog/providers/pharmacy_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../theme/app_icon_icons.dart';
 import '../theme/app_theme.dart';
 import '../widgets/pharmacy_item.dart';
 import '../widgets/search_widget.dart';
@@ -13,8 +16,12 @@ class PharmacyList extends StatefulWidget {
 }
 
 class _PharmacyListState extends State<PharmacyList> {
+
   @override
   Widget build(BuildContext context) {
+
+  var pharmacy = Provider.of<PharmacyProvider>(context);
+
     return Scaffold(
       body: Column(
         children: [
@@ -25,12 +32,22 @@ class _PharmacyListState extends State<PharmacyList> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "FLALOG'",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline1!
-                        .copyWith(color: AppTheme.green, fontSize: 33),
+                  Row(
+                    children: [
+                      Text(
+                        "FLALOG'",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline1!
+                            .copyWith(color: AppTheme.green, fontSize: 33),
+                      ),
+                      const SizedBox(width: 5),
+                      Icon(
+                        AppIcon.pill,
+                        color: AppTheme.green,
+                        size: 27,
+                      )
+                    ],
                   ),
                   SizedBox(height: 2.h),
                   const SizedBox(width: double.infinity),
@@ -58,7 +75,7 @@ class _PharmacyListState extends State<PharmacyList> {
                           child: const Padding(
                             padding: EdgeInsets.all(10),
                             child: Icon(
-                              Icons.settings,
+                              AppIcon.settings,
                               color: Colors.white,
                             ),
                           ),
@@ -70,9 +87,9 @@ class _PharmacyListState extends State<PharmacyList> {
               ),
             ),
           ),
-          const Expanded(
+           Expanded(
             flex: 3,
-            child: PharmacyItem(pharmacyList: []),
+            child: PharmacyItem(pharmacyList: pharmacy.pharmacyList),
           )
         ],
       ),

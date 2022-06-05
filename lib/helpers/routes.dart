@@ -7,7 +7,7 @@ import '../screens/onboarding_screen.dart';
 import '../screens/sign_up_screen.dart';
 
 class AppRoute {
-  static const String home = '/';
+  static const String home = '/home';
   static const String loginScreen = '/login_screen';
   static const String signInScreen = '/sign_in_screen';
   static const String signUpScreen = '/sign_up_screen';

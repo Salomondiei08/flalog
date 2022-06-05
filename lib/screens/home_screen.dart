@@ -1,4 +1,5 @@
 import 'package:flalog/screens/pharmact_list.dart';
+import 'package:flalog/theme/app_icon_icons.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/navigation_bar.dart';
@@ -46,8 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<IconData> listOfIcons = [
     Icons.home_rounded,
     Icons.shopping_cart_rounded,
-    Icons.medication,
-    Icons.person_rounded,
+    AppIcon.pharmacy,
+    AppIcon.chat
   ];
 
   void selectElement(int index) {

@@ -14,6 +14,7 @@ class AppNavigationBar extends StatelessWidget {
   final int currentIndex;
   final void Function(int)? onTap;
 
+  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Container(

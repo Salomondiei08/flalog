@@ -21,24 +21,24 @@ class PharmacyItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Pharmacie des parles",
+                  pharmacyList[i].name,
                   style: Theme.of(context).textTheme.headline6!.copyWith(
                       color: AppTheme.green, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "120 m",
+                  "${pharmacyList[i].distanceFromUser} m" ,
                   style: Theme.of(context).textTheme.headline6,
                 )
               ],
             ),
             Text(
-              "Carrefour Bateau",
+              pharmacyList[i].city,
             )
           ],
         ),
       ),
-      separatorBuilder: (_, i) => Divider(color: Colors.grey),
-      itemCount: 10,
+      separatorBuilder: (_, i) => const Divider(color: Colors.grey),
+      itemCount: pharmacyList.length,
     );
   }
 }

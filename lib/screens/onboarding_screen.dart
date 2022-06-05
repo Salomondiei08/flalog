@@ -14,16 +14,16 @@ class OnboardingScreen extends StatelessWidget {
       body: IntroductionScreen(
         pages: getPage(),
         onDone: () {
-          Navigator.of(context).push(
+          Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (context) => AuthService().handleAuth(),
             ),
           );
         },
         onSkip: () {
-          Navigator.of(context).push(
+          Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => const HomeScreen(),
+              builder: (context) => AuthService().handleAuth(),
             ),
           );
           // You can also override onSkip callback
@@ -64,7 +64,7 @@ List<PageViewModel> getPage() {
     PageViewModel(
       // title: "Never fill embarssaed again when prospecting",
       titleWidget: Text(
-        "Never feel embarssaed again when prospecting",
+        "Bienvenue dans flalog, l'application qui va révolutionner la pharmacie",
         textAlign: TextAlign.center,
         style: TextStyle(
           color: AppTheme.green,
@@ -94,7 +94,7 @@ List<PageViewModel> getPage() {
     ),
     PageViewModel(
       titleWidget: Text(
-        "Never loose a client again",
+        "Trouver un médicament n'a jamais été aussi simple",
         textAlign: TextAlign.center,
         style: TextStyle(
           color: AppTheme.green,
@@ -112,7 +112,7 @@ List<PageViewModel> getPage() {
     ),
     PageViewModel(
       titleWidget: Text(
-        "Boost your productivity it's full potentiel",
+        "Profitez-en dès maintenant",
         textAlign: TextAlign.center,
         style: TextStyle(
           color: AppTheme.green,

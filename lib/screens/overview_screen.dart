@@ -8,7 +8,7 @@ import '../theme/app_theme.dart';
 import '../widgets/search_widget.dart';
 
 class OverviewScreen extends StatefulWidget {
-  OverviewScreen({Key? key}) : super(key: key);
+  const OverviewScreen({Key? key}) : super(key: key);
 
   @override
   State<OverviewScreen> createState() => _OverviewScreenState();
@@ -25,7 +25,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
           Expanded(
               flex: 3,
               child: Padding(
-                padding:  EdgeInsets.only(top: 5.h, left: 5.w, right:  5.w),
+                padding: EdgeInsets.only(top: 5.h, left: 5.w, right: 5.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -38,7 +38,12 @@ class _OverviewScreenState extends State<OverviewScreen> {
                               .headline1!
                               .copyWith(color: AppTheme.green, fontSize: 33),
                         ),
-                        Icon(AppIcon.pill)
+                      const  SizedBox(width: 5),
+                        Icon(
+                          AppIcon.pill,
+                          color: AppTheme.green,
+                          size: 27,
+                        )
                       ],
                     ),
                     SizedBox(height: 2.h),
@@ -54,7 +59,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                               isPlaceMode: false,
                             ),
                           ),
-                           SizedBox(
+                          SizedBox(
                             width: 7.w,
                           ),
                           Container(
@@ -65,9 +70,9 @@ class _OverviewScreenState extends State<OverviewScreen> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: const Padding(
-                              padding:  EdgeInsets.all(10),
+                              padding: EdgeInsets.all(10),
                               child: Icon(
-                                Icons.settings,
+                                AppIcon.settings,
                                 color: Colors.white,
                               ),
                             ),
@@ -93,6 +98,12 @@ class _OverviewScreenState extends State<OverviewScreen> {
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           margin: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: index == indexSelected
+                                ? AppTheme.green
+                                : AppTheme.gray,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                           child: Center(
                             child: Text(
                               'La vie est belle',
@@ -103,12 +114,6 @@ class _OverviewScreenState extends State<OverviewScreen> {
                                     : Colors.black,
                               ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            color: index == indexSelected
-                                ? AppTheme.green
-                                : AppTheme.gray,
-                            borderRadius: BorderRadius.circular(10),
                           ),
                         ),
                       )),
@@ -125,6 +130,11 @@ class _OverviewScreenState extends State<OverviewScreen> {
                   height: 100 * index / 2,
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   margin: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color:
+                        index == indexSelected ? AppTheme.green : AppTheme.gray,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: Center(
                     child: Text(
                       'La vie est belle',
@@ -135,11 +145,6 @@ class _OverviewScreenState extends State<OverviewScreen> {
                             : Colors.black,
                       ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                    color:
-                        index == indexSelected ? AppTheme.green : AppTheme.gray,
-                    borderRadius: BorderRadius.circular(10),
                   ),
                 );
               },
@@ -152,6 +157,5 @@ class _OverviewScreenState extends State<OverviewScreen> {
 }
 
 void _showSearchScreen(BuildContext context) {
-
- showSearch(context: context, delegate: SearchPharmacyScreen());
+  showSearch(context: context, delegate: SearchPharmacyScreen());
 }

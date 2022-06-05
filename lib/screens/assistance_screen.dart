@@ -1,7 +1,10 @@
+import 'package:flalog/theme/app_icon_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../helpers/authservice.dart';
 import '../theme/app_theme.dart';
+import 'login_screen.dart';
 
 class AssistanceScreen extends StatefulWidget {
   const AssistanceScreen({Key? key}) : super(key: key);
@@ -29,7 +32,19 @@ class _AssistanceScreenState extends State<AssistanceScreen> {
                       .headline1!
                       .copyWith(color: AppTheme.green, fontSize: 33),
                 ),
-                InkWell(child: CircleAvatar(radius: 20))
+                InkWell(
+                  onTap: () {
+                    AuthService().signOut();
+                  },
+                  child: googleUser?.photoURL != null
+                      ? CircleAvatar(
+                          radius: 20,
+                          backgroundImage: NetworkImage(googleUser!.photoURL!),
+                        )
+                      : const Icon(
+                          Icons.person,
+                        ),
+                )
               ],
             ),
           ),
@@ -40,22 +55,23 @@ class _AssistanceScreenState extends State<AssistanceScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: Text(
               "ASSISTANCE",
-              style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 25),
+              style:
+                  Theme.of(context).textTheme.headline2!.copyWith(fontSize: 25),
             ),
           ),
-           SizedBox(
+          SizedBox(
             height: 5.h,
           ),
-          Container(
+          SizedBox(
             height: 45.h,
             child: MediaQuery.removePadding(
               removeTop: true,
               context: context,
               child: ListView(
-                children: [
+                children: const [
                   AssistanceItem(
                     text: "Douleurs de ventre",
-                    iconData: Icons.bloodtype,
+                    iconData: AppIcon.stomach,
                   ),
                   AssistanceItem(
                     text: "Douleurs de dos",
@@ -63,7 +79,7 @@ class _AssistanceScreenState extends State<AssistanceScreen> {
                   ),
                   AssistanceItem(
                     text: "Grippe",
-                    iconData: Icons.local_pharmacy,
+                    iconData: AppIcon.throat,
                   ),
                   AssistanceItem(
                     text: "Douleurs Bénignes",
@@ -71,7 +87,7 @@ class _AssistanceScreenState extends State<AssistanceScreen> {
                   ),
                   AssistanceItem(
                     text: "Parler avec un spécialiste",
-                    iconData: Icons.chat,
+                    iconData: AppIcon.chat,
                   ),
                 ],
               ),
