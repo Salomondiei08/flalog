@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-
+import 'package:latlong2/latlong.dart' as latlong;
 import '../models/pharmacy.dart';
 
 class PharmacyProvider with ChangeNotifier {
@@ -9,61 +9,49 @@ class PharmacyProvider with ChangeNotifier {
         name: 'Pharmacie les oscars',
         email: 'pharmacie@email.com',
         distanceFromUser: 45,
-        lat: 	5.225936,
-        long: -3.753666,
+        position: latlong.LatLng(5.230076, -3.757411),
         city: 'Bassam'),
-         Pharmacy(
+    Pharmacy(
         id: DateTime.now().toString(),
         name: 'Pharmacie les oscars',
         email: 'pharmacie@email.com',
         distanceFromUser: 90,
-        lat: 	5.225936,
-        long: -3.753666,
+        position: latlong.LatLng(5.225944, -3.753656),
         city: 'Gonzague'),
-
-         Pharmacy(
+    Pharmacy(
         id: DateTime.now().toString(),
         name: 'Pharmacie les vies',
         email: 'pharmacie@email.com',
         distanceFromUser: 102,
-        lat: 	5.225944,
-        long: -3.753656,
+        position: latlong.LatLng(5.225944, -3.753656),
         city: 'Mockey Ville'),
-
-         Pharmacy(
+    Pharmacy(
         id: DateTime.now().toString(),
         name: 'Pharmacie lilian',
         email: 'pharmacie@email.com',
         distanceFromUser: 1000,
-        lat: 	5.225536,
-        long: -3.765666,
+        position: latlong.LatLng(5.225944, -3.753656),
         city: '2 Plateaux'),
-
-            Pharmacy(
+    Pharmacy(
         id: DateTime.now().toString(),
         name: 'Pharmacie les oscars',
         email: 'pharmacie@email.com',
         distanceFromUser: 90,
-        lat: 	5.225936,
-        long: -3.753666,
+        position: latlong.LatLng(5.225944, -3.753656),
         city: 'Gonzague'),
-
-         Pharmacy(
+    Pharmacy(
         id: DateTime.now().toString(),
         name: 'Pharmacie les vies',
         email: 'pharmacie@email.com',
         distanceFromUser: 102,
-        lat: 	5.225944,
-        long: -3.753656,
+        position: latlong.LatLng(5.225944, -3.753656),
         city: 'Mockey Ville'),
-
-         Pharmacy(
+    Pharmacy(
         id: DateTime.now().toString(),
         name: 'Pharmacie lilian',
         email: 'pharmacie@email.com',
         distanceFromUser: 1000,
-        lat: 	5.225536,
-        long: -3.765666,
+        position: latlong.LatLng(5.225944, -3.753656),
         city: '2 Plateaux'),
   ];
 

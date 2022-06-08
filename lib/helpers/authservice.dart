@@ -3,7 +3,9 @@ import 'package:flalog/screens/home_screen.dart';
 import 'package:flalog/screens/login_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 
 import '../screens/onboarding_screen.dart';
 import 'error_handler.dart';
@@ -64,6 +66,15 @@ class AuthService {
             await auth.signInWithPopup(authProvider);
 
         user = userCredential.user;
+
+        await FirebaseChatCore.instance.createUserInFirestore(
+          types.User(
+            firstName: user!.displayName,
+            id: user.uid, // UID from Firebase Authentication
+            imageUrl: 'https://i.pravatar.cc/300',
+            lastName: user.email,
+          ),
+        );
       } catch (e) {
         print(e);
       }
@@ -87,6 +98,15 @@ class AuthService {
               await auth.signInWithCredential(credential);
 
           user = userCredential.user;
+
+          await FirebaseChatCore.instance.createUserInFirestore(
+            types.User(
+              firstName: user!.displayName,
+              id: user.uid, // UID from Firebase Authentication
+              imageUrl: 'https://i.pravatar.cc/300',
+              lastName: user.email,
+            ),
+          );
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {
             ErrorHandler().errorDialog(context, e);
@@ -122,14 +142,19 @@ class AuthService {
     return FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
         .then(
-      (val) {
+      (user) {
         print('signed in');
       },
-    ).catchError(
-      (e) {
-        print(e);
-      },
-    );
+    ).then((user) async =>
+            await FirebaseChatCore.instance.createUserInFirestore(
+              types.User(
+                firstName: email,
+                id: DateTime.now()
+                    .toString(), // UID from Firebase Authentication
+                imageUrl: 'https://i.pravatar.cc/300',
+                lastName: email,
+              ),
+            ));
   }
 
   //Reset Password

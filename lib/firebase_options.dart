@@ -57,6 +57,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '210169006561',
     projectId: 'flalog',
     storageBucket: 'flalog.appspot.com',
+    androidClientId: '210169006561-95ki9svd74irbhjts0vobd86johl9h48.apps.googleusercontent.com',
     iosClientId: '210169006561-arn4hemansh85ppoqmvdomrkh5gobmnj.apps.googleusercontent.com',
     iosBundleId: 'com.reinvent.flalog',
   );
@@ -67,6 +68,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '210169006561',
     projectId: 'flalog',
     storageBucket: 'flalog.appspot.com',
+    androidClientId: '210169006561-95ki9svd74irbhjts0vobd86johl9h48.apps.googleusercontent.com',
     iosClientId: '210169006561-arn4hemansh85ppoqmvdomrkh5gobmnj.apps.googleusercontent.com',
     iosBundleId: 'com.reinvent.flalog',
   );

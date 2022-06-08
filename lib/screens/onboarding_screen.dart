@@ -1,3 +1,6 @@
+import 'package:provider/provider.dart';
+
+import '../providers/marker_proviser.dart';
 import 'home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -8,8 +11,13 @@ import '../theme/app_theme.dart';
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
 
+  void initMarkers(BuildContext context) async {
+    await Provider.of<MarkersProvider>(context, listen: false).initMarkers();
+  }
+
   @override
   Widget build(BuildContext context) {
+    initMarkers(context);
     return Scaffold(
       body: IntroductionScreen(
         pages: getPage(),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/home_screen.dart';
 import '../screens/login_screen.dart';
+import '../screens/map_screen.dart';
 import '../screens/onboarding_screen.dart';
 import '../screens/sign_up_screen.dart';
 
@@ -34,7 +35,7 @@ class AppRoute {
     signInScreen: (BuildContext context) => const LoginScreen(),
     signUpScreen: (BuildContext context) => const SignUpScreen(),
     onBoardingScreen: (BuildContext context) => const OnboardingScreen(),
-    // drugDetailScreen : (BuildContext context) => DrugDetailScreen(),
+    // mapScreen : (BuildContext context) => MapScreen(),
     // orderScreen : (BuildContext context) => OrderScreen(),
     // pharmacyListScreen : (BuildContext context) => PharmacyListScreen(),
     // pharmacyDetailScreen : (BuildContext context) => PharmacyDetailScreen(),

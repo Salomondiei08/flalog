@@ -8,13 +8,17 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flalog/theme/app_theme.dart';
 import 'firebase_options.dart';
 import 'helpers/routes.dart';
+import 'providers/marker_proviser.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  WidgetsFlutterBinding.ensureInitialized();  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  
   runApp(const Flalog());
 }
 
@@ -27,6 +31,7 @@ class Flalog extends StatelessWidget {
       return MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (_) => PharmacyProvider()),
+            ChangeNotifierProvider(create: (_) => MarkersProvider()),
           ],
           builder: (context, child) {
             return MaterialApp(
@@ -37,7 +42,7 @@ class Flalog extends StatelessWidget {
               routes: AppRoute.routes,
               home: const OnboardingScreen(),
             );
-          });
-    });
+          },);
+    },);
   }
 }

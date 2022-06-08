@@ -1,10 +1,11 @@
+import 'package:latlong2/latlong.dart' as latlong;
+
 class Pharmacy {
   final String id;
   final String name;
   List<String>? contacts;
   String email;
-  final double lat;
-  final double long;
+  final  latlong.LatLng position;
   String? locationText;
   double distanceFromUser;
   var manager;
@@ -15,10 +16,9 @@ class Pharmacy {
   Pharmacy({
     required this.id,
     required this.name,
-     this.contacts,
+    this.contacts,
     required this.email,
-    required this.lat,
-    required this.long,
+    required this.position,
     this.locationText,
     required this.distanceFromUser,
     this.manager,

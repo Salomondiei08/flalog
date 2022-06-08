@@ -4,6 +4,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../helpers/authservice.dart';
 import '../theme/app_theme.dart';
+import 'chat/rooms.dart';
 import 'login_screen.dart';
 
 class AssistanceScreen extends StatefulWidget {
@@ -68,7 +69,7 @@ class _AssistanceScreenState extends State<AssistanceScreen> {
               removeTop: true,
               context: context,
               child: ListView(
-                children: const [
+                children: [
                   AssistanceItem(
                     text: "Douleurs de ventre",
                     iconData: AppIcon.stomach,
@@ -88,6 +89,14 @@ class _AssistanceScreenState extends State<AssistanceScreen> {
                   AssistanceItem(
                     text: "Parler avec un spécialiste",
                     iconData: AppIcon.chat,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RoomsPage(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -104,11 +113,11 @@ class AssistanceItem extends StatelessWidget {
 
   final IconData iconData;
 
-  const AssistanceItem({
-    Key? key,
-    required this.text,
-    required this.iconData,
-  }) : super(key: key);
+  void Function()? onPressed;
+
+  AssistanceItem(
+      {Key? key, required this.text, required this.iconData, this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +129,7 @@ class AssistanceItem extends StatelessWidget {
           iconData,
           color: AppTheme.green,
         ),
-        onTap: () {},
+        onTap: onPressed,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
